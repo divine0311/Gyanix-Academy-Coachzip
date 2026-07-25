@@ -1,0 +1,189 @@
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
+import { BookOpen, Star, Users, Trophy, ChevronRight } from "lucide-react";
+import homeHeroImg from "@assets/generated_images/home-hero.jpg";
+
+export default function Home() {
+  return (
+    <div className="w-full">
+      {/* HERO SECTION */}
+      <section className="relative overflow-hidden bg-primary py-20 lg:py-32">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
+          {/* Particles placeholder */}
+          <div className="absolute top-20 left-20 w-4 h-4 bg-secondary rounded-full blur-[2px]"></div>
+          <div className="absolute bottom-40 right-20 w-6 h-6 bg-white rounded-full blur-[2px]"></div>
+          <div className="absolute top-40 right-1/3 w-3 h-3 bg-secondary rounded-full blur-[1px]"></div>
+        </div>
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white text-sm font-medium mb-6">
+                <Star className="w-4 h-4 text-secondary fill-secondary" />
+                <span>5.0 Rated Institute in Kaithal</span>
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+                Your Path to <span className="text-secondary">IIT, NEET, NDA & Defence</span> Success
+              </h1>
+              <p className="text-lg md:text-xl text-white/80 mb-8 max-w-lg">
+                Join Gyanix Academy and transform your potential into achievement. Expert faculty, rigorous testing, and unwavering support for ambitious students.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link href="/contact">
+                  <Button variant="secondary" size="lg" className="rounded-full font-bold px-8">
+                    Book Free Demo Class
+                  </Button>
+                </Link>
+                <Link href="/courses">
+                  <Button variant="outline" size="lg" className="rounded-full font-bold px-8 bg-transparent text-white border-white hover:bg-white hover:text-primary">
+                    Explore Courses
+                  </Button>
+                </Link>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative"
+            >
+              <div className="absolute -inset-4 bg-secondary/20 rounded-[2rem] blur-xl transform rotate-3"></div>
+              <div className="relative rounded-[2rem] overflow-hidden border-4 border-white/10 shadow-2xl">
+                <img 
+                  src={homeHeroImg} 
+                  alt="Students celebrating success at Gyanix Academy" 
+                  className="w-full h-auto object-cover aspect-[4/3]"
+                />
+              </div>
+              
+              {/* Floating Badge */}
+              <motion.div 
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.8 }}
+                className="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-xl flex items-center gap-4"
+              >
+                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                  <Trophy className="w-6 h-6" />
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-gray-900">100%</div>
+                  <div className="text-sm text-gray-600 font-medium">Results Driven</div>
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* STATS SECTION */}
+      <section className="bg-white py-12 border-b border-gray-100">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { icon: Users, count: "84+", label: "Happy Students" },
+              { icon: Star, count: "5.0★", label: "Google Rating" },
+              { icon: BookOpen, count: "2025", label: "Est. Year" },
+              { icon: Trophy, count: "8+", label: "Exams Covered" }
+            ].map((stat, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="flex flex-col items-center text-center gap-2"
+              >
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2">
+                  <stat.icon className="w-6 h-6" />
+                </div>
+                <div className="text-3xl md:text-4xl font-extrabold text-gray-900">{stat.count}</div>
+                <div className="text-sm md:text-base font-medium text-gray-500">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* QUICK HIGHLIGHTS / COURSES */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Premier Programs</h2>
+            <p className="text-gray-600 text-lg">Comprehensive coaching tailored for ultimate competitive success.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { title: "IIT-JEE (Mains & Adv)", desc: "Rigorous preparation for engineering aspirants.", color: "bg-blue-50 text-blue-600" },
+              { title: "NEET Preparation", desc: "Expert guidance for medical entrance exams.", color: "bg-emerald-50 text-emerald-600" },
+              { title: "NDA & Defence", desc: "Structured coaching for defence services.", color: "bg-red-50 text-red-600" },
+              { title: "CUET", desc: "Top university admission preparation.", color: "bg-purple-50 text-purple-600" },
+              { title: "RMS & Sainik School", desc: "Early preparation for prestigious schools.", color: "bg-orange-50 text-orange-600" },
+              { title: "School Boards (5th-12th)", desc: "Strong foundation for academic excellence.", color: "bg-teal-50 text-teal-600" },
+            ].map((course, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all border border-gray-100 group cursor-pointer"
+              >
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 ${course.color}`}>
+                  <BookOpen className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{course.title}</h3>
+                <p className="text-gray-600 mb-6">{course.desc}</p>
+                <Link href="/courses" className="inline-flex items-center text-primary font-semibold group-hover:text-secondary transition-colors">
+                  Know More <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link href="/courses">
+              <Button variant="default" size="lg" className="rounded-full px-8">
+                View All Courses
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+      
+      {/* CTA SECTION */}
+      <section className="py-24 bg-primary relative overflow-hidden">
+        <div className="absolute right-0 top-0 w-1/2 h-full bg-secondary/10 skew-x-12 transform origin-top-left"></div>
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Ready to secure your future?</h2>
+            <p className="text-xl text-white/80 mb-10">
+              Join Gyanix Academy today and take the first step towards academic excellence. Enroll in our scholarship test to get up to 100% fee waiver.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/scholarship">
+                <Button variant="secondary" size="lg" className="rounded-full px-8 font-bold w-full sm:w-auto">
+                  Apply for G-SET Scholarship
+                </Button>
+              </Link>
+              <Link href="/contact">
+                <Button variant="outline" size="lg" className="rounded-full px-8 font-bold text-white border-white hover:bg-white hover:text-primary w-full sm:w-auto">
+                  Contact Us
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

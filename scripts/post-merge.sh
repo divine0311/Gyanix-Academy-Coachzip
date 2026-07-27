@@ -1,4 +1,7 @@
 #!/bin/bash
 set -e
 pnpm install --frozen-lockfile
-pnpm --filter db push
+# Only push DB schema if DATABASE_URL is set (requires a provisioned Postgres database)
+if [ -n "$DATABASE_URL" ]; then
+  pnpm --filter db push
+fi

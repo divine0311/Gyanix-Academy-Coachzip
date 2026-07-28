@@ -1,10 +1,28 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { BookOpen, Star, Users, Trophy, ChevronRight } from "lucide-react";
 import homeHeroImg from "@assets/generated_images/home-hero.jpg";
+import homeHeroImg2 from "@assets/generated_images/home-hero-2.jpg";
+import homeHeroImg3 from "@assets/generated_images/home-hero-3.jpg";
+
+const heroSlides = [
+  { src: homeHeroImg,  alt: "Students celebrating success at Gyanix Academy" },
+  { src: homeHeroImg2, alt: "Students learning in modern classroom at Gyanix Academy" },
+  { src: homeHeroImg3, alt: "Students celebrating exam results at Gyanix Academy" },
+];
 
 export default function Home() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % heroSlides.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="w-full">
       {/* HERO SECTION */}
@@ -55,12 +73,31 @@ export default function Home() {
               className="relative"
             >
               <div className="absolute -inset-4 bg-secondary/20 rounded-[2rem] blur-xl transform rotate-3"></div>
-              <div className="relative rounded-[2rem] overflow-hidden border-4 border-white/10 shadow-2xl">
-                <img 
-                  src={homeHeroImg} 
-                  alt="Students celebrating success at Gyanix Academy" 
-                  className="w-full h-auto object-cover aspect-[4/3]"
-                />
+              <div className="relative rounded-[2rem] overflow-hidden border-4 border-white/10 shadow-2xl aspect-[4/3]">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={current}
+                    src={heroSlides[current].src}
+                    alt={heroSlides[current].alt}
+                    className="w-full h-full object-cover absolute inset-0"
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.97 }}
+                    transition={{ duration: 0.7, ease: "easeInOut" }}
+                  />
+                </AnimatePresence>
+              </div>
+              {/* Slide dots */}
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                {heroSlides.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrent(i)}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      i === current ? "bg-secondary w-5" : "bg-white/50"
+                    }`}
+                  />
+                ))}
               </div>
               
               {/* Floating Badge */}

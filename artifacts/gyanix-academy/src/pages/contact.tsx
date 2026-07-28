@@ -48,8 +48,11 @@ export default function Contact() {
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Call Us</h3>
                 <p className="text-gray-600 mb-4 text-sm">We are available Mon-Sat, 9am to 7pm.</p>
-                <a href="tel:+919876543210" className="text-lg font-bold text-primary hover:text-secondary transition-colors">
-                  +91 98765 43210
+                <a href="tel:+918950175314" className="text-lg font-bold text-primary hover:text-secondary transition-colors">
+                  89501-75314
+                </a>
+                <a href="tel:+918950275314" className="text-base font-semibold text-primary hover:text-secondary transition-colors">
+                  89502-75314
                 </a>
               </motion.div>
 
@@ -64,9 +67,9 @@ export default function Contact() {
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Visit Us</h3>
                 <p className="text-gray-600 text-sm">
-                  Gali No 4, Near New Bus Stand,<br/>
-                  Main Road Karnal Road, Defence Colony,<br/>
-                  Kaithal - 136027, Haryana
+                  Karnal Road, Street No. 4,<br/>
+                  Near New Bus Stand, Defence Colony,<br/>
+                  Kaithal, Haryana – 136027
                 </p>
               </motion.div>
 

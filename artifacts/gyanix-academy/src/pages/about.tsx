@@ -37,10 +37,10 @@ export default function About() {
             >
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
               <p className="text-gray-600 leading-relaxed mb-6 text-lg">
-                Founded in 2025, Gyanix Academy was established with a singular vision: to provide premium, result-oriented coaching to students in Kaithal and surrounding regions. We recognized the gap between ambition and the right guidance, and stepped in to bridge it.
+                Founded in 2025, Gyanix Academy is a complete <strong>School · Coaching · Hostel</strong> institute in Kaithal, Haryana — built with a singular vision: to provide premium, result-oriented education and residential facilities to students from Class 5th to 12th.
               </p>
               <p className="text-gray-600 leading-relaxed mb-8 text-lg">
-                Today, with a 5.0-star rating and numerous success stories, we stand as a beacon of hope for aspirants of IIT-JEE, NEET, NDA, and other prestigious competitive exams.
+                We recognised the gap between ambition and the right guidance, and stepped in to bridge it. Today, with a 5.0-star rating on both Google (59 reviews) and Justdial (84 reviews), we stand as a beacon of hope for aspirants of IIT-JEE, NEET, NDA, CUET, and other prestigious competitive exams.
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

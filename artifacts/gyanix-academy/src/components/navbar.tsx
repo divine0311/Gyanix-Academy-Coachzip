@@ -36,9 +36,9 @@ export function Navbar() {
       <div className="hidden lg:block bg-primary text-white text-xs py-2 z-50 relative">
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
           <div className="flex items-center gap-6">
-            <a href="tel:+919876543210" className="flex items-center gap-1.5 hover:text-secondary transition-colors">
+            <a href="tel:+918950175314" className="flex items-center gap-1.5 hover:text-secondary transition-colors">
               <Phone className="w-3 h-3" />
-              +91 98765 43210
+              89501-75314
             </a>
             <span className="flex items-center gap-1.5 text-white/70">
               <MapPin className="w-3 h-3" />
@@ -51,7 +51,7 @@ export function Navbar() {
               Mon–Sat: 9 AM – 7 PM
             </span>
             <span className="flex items-center gap-1.5 text-secondary font-semibold">
-              ★ 5.0 Rated · 84+ Happy Students
+              ★ 5.0 Google · 84+ Justdial Reviews
             </span>
           </div>
         </div>
@@ -117,7 +117,7 @@ export function Navbar() {
           {/* Desktop CTA Buttons */}
           <div className="hidden lg:flex items-center gap-3">
             <a
-              href="https://wa.me/919876543210"
+              href="https://wa.me/918950175314"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 rounded-full border border-green-500 text-green-600 text-sm font-semibold hover:bg-green-50 transition-colors duration-200"
@@ -199,7 +199,7 @@ export function Navbar() {
                   className="flex gap-3 mt-3 pt-3 border-t border-gray-100"
                 >
                   <a
-                    href="https://wa.me/919876543210"
+                    href="https://wa.me/918950175314"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-green-500 text-green-600 text-sm font-bold hover:bg-green-50 transition-colors"

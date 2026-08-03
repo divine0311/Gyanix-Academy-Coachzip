@@ -56,13 +56,16 @@ export default function Contact() {
                 </a>
               </motion.div>
 
-              <motion.div 
+              <motion.a
+                href="https://maps.app.goo.gl/8phnpfA2nXru4tXS8"
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1 }}
-                className="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-primary flex flex-col items-center text-center"
+                className="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-primary flex flex-col items-center text-center cursor-pointer hover:shadow-xl hover:-translate-y-1 transition-all duration-200 group"
               >
-                <div className="w-14 h-14 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-4">
+                <div className="w-14 h-14 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-colors duration-200">
                   <MapPin className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Visit Us</h3>
@@ -71,7 +74,10 @@ export default function Contact() {
                   Near New Bus Stand, Defence Colony,<br/>
                   Kaithal, Haryana – 136027
                 </p>
-              </motion.div>
+                <span className="mt-3 text-xs font-semibold text-primary group-hover:text-secondary transition-colors duration-200 flex items-center gap-1">
+                  <MapPin className="w-3 h-3" /> Open in Maps
+                </span>
+              </motion.a>
 
               <motion.div 
                 initial={{ opacity: 0, x: -20 }}

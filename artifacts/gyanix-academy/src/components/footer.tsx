@@ -94,9 +94,19 @@ export function Footer() {
           <div>
             <h4 className="text-base font-bold mb-5 text-white">Contact Info</h4>
             <ul className="flex flex-col gap-4">
-              <li className="flex items-start gap-3 text-white/75 text-sm">
+              <li className="flex items-start gap-3 text-sm">
                 <MapPin className="w-4 h-4 text-secondary shrink-0 mt-0.5" />
-                <span>Karnal Road, Street No. 4, Near New Bus Stand, Defence Colony, Kaithal, Haryana – 136027</span>
+                <div className="flex flex-col gap-1.5">
+                  <span className="text-white/75">Karnal Road, Street No. 4, Near New Bus Stand, Defence Colony, Kaithal, Haryana – 136027</span>
+                  <a
+                    href="https://maps.app.goo.gl/8phnpfA2nXru4tXS8"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-secondary hover:text-white font-semibold transition-colors text-xs"
+                  >
+                    <MapPin className="w-3 h-3" /> View on Google Maps →
+                  </a>
+                </div>
               </li>
               <li className="flex flex-col gap-1.5 text-sm">
                 <a href="tel:+918950175314" className="flex items-center gap-3 text-white/75 hover:text-secondary transition-colors">

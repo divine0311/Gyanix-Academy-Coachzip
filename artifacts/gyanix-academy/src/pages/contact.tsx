@@ -1,17 +1,47 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle2 } from "lucide-react";
+import { MapPin, Mail, Clock, Send, CheckCircle2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Phone } from "lucide-react";
 
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
+    setStatus("loading");
+    setErrorMsg("");
+
+    const form = e.currentTarget;
+    const data = {
+      name: (form.elements.namedItem("name") as HTMLInputElement).value,
+      email: (form.elements.namedItem("email") as HTMLInputElement).value,
+      course: (form.elements.namedItem("course") as HTMLSelectElement).value,
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+    };
+
+    try {
+      const res = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error((body as { error?: string }).error ?? "Something went wrong.");
+      }
+
+      setStatus("success");
+      form.reset();
+      setTimeout(() => setStatus("idle"), 6000);
+    } catch (err) {
+      setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
+      setStatus("error");
+    }
   };
 
   return (
@@ -102,8 +132,9 @@ export default function Contact() {
               <h2 className="text-3xl font-bold text-gray-900 mb-8">Send an Enquiry</h2>
               
               <AnimatePresence mode="wait">
-                {submitted ? (
+                {status === "success" ? (
                   <motion.div 
+                    key="success"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
@@ -117,43 +148,69 @@ export default function Contact() {
                   </motion.div>
                 ) : (
                   <motion.form 
+                    key="form"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    onSubmit={handleSubmit} 
+                    onSubmit={handleSubmit}
                     className="space-y-6"
                   >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <label className="text-sm font-medium text-gray-900">Full Name</label>
-                        <Input required placeholder="Enter your name" className="bg-gray-50" />
+                        <Input name="name" required placeholder="Enter your name" className="bg-gray-50" />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-sm font-medium text-gray-900">Phone Number</label>
-                        <Input required type="tel" placeholder="Enter phone number" className="bg-gray-50" />
+                        <label className="text-sm font-medium text-gray-900">Email Address</label>
+                        <Input name="email" required type="email" placeholder="Enter your email" className="bg-gray-50" />
                       </div>
                     </div>
                     
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-gray-900">Course Interested In</label>
-                      <select required className="flex h-10 w-full rounded-md border border-input bg-gray-50 px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
-                        <option value="" disabled selected>Select a course</option>
-                        <option value="iit">IIT-JEE</option>
-                        <option value="neet">NEET</option>
-                        <option value="nda">NDA</option>
-                        <option value="cuet">CUET</option>
-                        <option value="school">School Boards (5th-12th)</option>
-                        <option value="other">Other</option>
+                      <select name="course" required className="flex h-10 w-full rounded-md border border-input bg-gray-50 px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                        <option value="" disabled>Select a course</option>
+                        <option value="IIT-JEE">IIT-JEE</option>
+                        <option value="NEET">NEET</option>
+                        <option value="NDA">NDA</option>
+                        <option value="CUET">CUET</option>
+                        <option value="School Boards (5th-12th)">School Boards (5th-12th)</option>
+                        <option value="Other">Other</option>
                       </select>
                     </div>
 
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-gray-900">Message</label>
-                      <Textarea required placeholder="How can we help you?" className="min-h-[120px] bg-gray-50" />
+                      <Textarea name="message" required placeholder="How can we help you?" className="min-h-[120px] bg-gray-50" />
                     </div>
 
-                    <Button type="submit" size="lg" className="w-full md:w-auto px-8 gap-2">
-                      <Send className="w-4 h-4" /> Send Message
+                    {status === "error" && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="flex items-center gap-2 text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm"
+                      >
+                        <AlertCircle className="w-4 h-4 shrink-0" />
+                        {errorMsg || "Failed to send. Please try again."}
+                      </motion.div>
+                    )}
+
+                    <Button
+                      type="submit"
+                      size="lg"
+                      disabled={status === "loading"}
+                      className="w-full md:w-auto px-8 gap-2"
+                    >
+                      {status === "loading" ? (
+                        <>
+                          <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+                          Sending…
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4" /> Send Message
+                        </>
+                      )}
                     </Button>
                   </motion.form>
                 )}

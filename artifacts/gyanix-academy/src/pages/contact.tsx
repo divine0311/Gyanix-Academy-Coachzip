@@ -161,7 +161,7 @@ export default function Contact() {
       {/* Map */}
       <section className="h-[400px] w-full mt-12 bg-gray-200">
         <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m3!1d110052.29653139828!2d76.32628424335939!3d29.800532700000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390e16790d90d8ef%3A0xc665792d4924a307!2sKaithal%2C%20Haryana!5e0!3m2!1sen!2sin!4v1714155152206!5m2!1sen!2sin" 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.9!2d76.4252486!3d29.797647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3911e12cd020ab75%3A0xfbcec7661ab03a1f!2sGyanix%20Academy!5e0!3m2!1sen!2sin!4v1722700000000!5m2!1sen!2sin" 
           width="100%" 
           height="100%" 
           style={{ border: 0 }} 

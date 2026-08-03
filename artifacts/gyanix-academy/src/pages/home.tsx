@@ -120,57 +120,64 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STATS SECTION */}
-      <section className="bg-white py-12 border-b border-gray-100">
+      {/* OUR ACHIEVERS SECTION */}
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Achievers</h2>
+            <p className="text-gray-600 text-lg">Celebrated in the community and covered by regional media.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: Users, count: "84+", label: "Justdial Reviews" },
-              { icon: Star, count: "5.0★", label: "Google & Justdial" },
-              { icon: BookOpen, count: "9+", label: "Exams Covered" },
-              { icon: Trophy, count: "2025", label: "Est. in Kaithal" }
-            ].map((stat, i) => (
+              {
+                emoji: "🏆",
+                title: "District & State Ranks",
+                desc: "Multiple students securing District Rank and State Rank in IIT-JEE, NEET, and NDA competitive exams.",
+                tag: "Academic Excellence",
+                color: "border-yellow-300 bg-yellow-50",
+                tagColor: "bg-yellow-100 text-yellow-700",
+              },
+              {
+                emoji: "📰",
+                title: "Amar Ujala Coverage",
+                desc: "Featured in Amar Ujala newspaper for our prize & cheque distribution award ceremony for top performers.",
+                tag: "Media Recognition",
+                color: "border-blue-200 bg-blue-50",
+                tagColor: "bg-blue-100 text-blue-700",
+              },
+              {
+                emoji: "🚦",
+                title: "Road Safety Programme",
+                desc: "Organised a road safety awareness drive with local RTO officials, covered by Jagmarg News.",
+                tag: "Community Initiative",
+                color: "border-green-200 bg-green-50",
+                tagColor: "bg-green-100 text-green-700",
+              },
+              {
+                emoji: "🎖️",
+                title: "Prize Distribution Events",
+                desc: "Regular cheque & trophy distribution ceremonies honouring top performers across all programmes.",
+                tag: "Student Recognition",
+                color: "border-secondary/30 bg-orange-50",
+                tagColor: "bg-orange-100 text-secondary",
+              },
+            ].map((item, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="flex flex-col items-center text-center gap-2"
+                className={`rounded-2xl border-2 p-7 flex flex-col gap-4 hover:shadow-lg transition-all ${item.color}`}
               >
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2">
-                  <stat.icon className="w-6 h-6" />
+                <div className="text-4xl">{item.emoji}</div>
+                <div>
+                  <span className={`text-xs font-bold px-3 py-1 rounded-full ${item.tagColor}`}>{item.tag}</span>
                 </div>
-                <div className="text-3xl md:text-4xl font-extrabold text-gray-900">{stat.count}</div>
-                <div className="text-sm md:text-base font-medium text-gray-500">{stat.label}</div>
+                <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
-          </div>
-
-          {/* Trust Badges */}
-          <div className="flex flex-wrap items-center justify-center gap-4 mt-10 pt-8 border-t border-gray-100">
-            <div className="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-full px-5 py-2.5 shadow-sm">
-              <span className="text-yellow-400 text-lg leading-none">★★★★★</span>
-              <div className="text-sm font-semibold text-gray-800">
-                <span className="text-primary font-bold">5.0</span> on Google
-                <span className="text-gray-400 font-normal ml-1">(59 reviews)</span>
-              </div>
-            </div>
-            <div className="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-full px-5 py-2.5 shadow-sm">
-              <span className="text-yellow-400 text-lg leading-none">★★★★★</span>
-              <div className="text-sm font-semibold text-gray-800">
-                <span className="text-primary font-bold">5.0</span> on Justdial
-                <span className="text-gray-400 font-normal ml-1">(84 reviews)</span>
-              </div>
-            </div>
-            <div className="flex items-center gap-2 bg-secondary/5 border border-secondary/20 rounded-full px-5 py-2.5 shadow-sm">
-              <span className="text-secondary font-bold text-base">✓</span>
-              <span className="text-sm font-semibold text-gray-800">Justdial Claimed Business</span>
-            </div>
-            <div className="flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-full px-5 py-2.5 shadow-sm">
-              <span className="text-primary font-bold text-base">🏫</span>
-              <span className="text-sm font-semibold text-gray-800">School · Coaching · Hostel</span>
-            </div>
           </div>
         </div>
       </section>
@@ -258,68 +265,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* OUR ACHIEVERS SECTION */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Achievers</h2>
-            <p className="text-gray-600 text-lg">Celebrated in the community and covered by regional media.</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                emoji: "🏆",
-                title: "District & State Ranks",
-                desc: "Multiple students securing District Rank and State Rank in IIT-JEE, NEET, and NDA competitive exams.",
-                tag: "Academic Excellence",
-                color: "border-yellow-300 bg-yellow-50",
-                tagColor: "bg-yellow-100 text-yellow-700",
-              },
-              {
-                emoji: "📰",
-                title: "Amar Ujala Coverage",
-                desc: "Featured in Amar Ujala newspaper for our prize & cheque distribution award ceremony for top performers.",
-                tag: "Media Recognition",
-                color: "border-blue-200 bg-blue-50",
-                tagColor: "bg-blue-100 text-blue-700",
-              },
-              {
-                emoji: "🚦",
-                title: "Road Safety Programme",
-                desc: "Organised a road safety awareness drive with local RTO officials, covered by Jagmarg News.",
-                tag: "Community Initiative",
-                color: "border-green-200 bg-green-50",
-                tagColor: "bg-green-100 text-green-700",
-              },
-              {
-                emoji: "🎖️",
-                title: "Prize Distribution Events",
-                desc: "Regular cheque & trophy distribution ceremonies honouring top performers across all programmes.",
-                tag: "Student Recognition",
-                color: "border-secondary/30 bg-orange-50",
-                tagColor: "bg-orange-100 text-secondary",
-              },
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className={`rounded-2xl border-2 p-7 flex flex-col gap-4 hover:shadow-lg transition-all ${item.color}`}
-              >
-                <div className="text-4xl">{item.emoji}</div>
-                <div>
-                  <span className={`text-xs font-bold px-3 py-1 rounded-full ${item.tagColor}`}>{item.tag}</span>
-                </div>
-                <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA SECTION */}
       <section className="py-24 bg-primary relative overflow-hidden">
         <div className="absolute right-0 top-0 w-1/2 h-full bg-secondary/10 skew-x-12 transform origin-top-left"></div>
@@ -340,6 +285,61 @@ export default function Home() {
                   Contact Us
                 </Button>
               </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* REVIEWS / STATS SECTION */}
+      <section className="bg-white py-12 border-b border-gray-100">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { icon: Users, count: "84+", label: "Justdial Reviews" },
+              { icon: Star, count: "5.0★", label: "Google & Justdial" },
+              { icon: BookOpen, count: "9+", label: "Exams Covered" },
+              { icon: Trophy, count: "2025", label: "Est. in Kaithal" }
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="flex flex-col items-center text-center gap-2"
+              >
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2">
+                  <stat.icon className="w-6 h-6" />
+                </div>
+                <div className="text-3xl md:text-4xl font-extrabold text-gray-900">{stat.count}</div>
+                <div className="text-sm md:text-base font-medium text-gray-500">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Trust Badges */}
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-10 pt-8 border-t border-gray-100">
+            <div className="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-full px-5 py-2.5 shadow-sm">
+              <span className="text-yellow-400 text-lg leading-none">★★★★★</span>
+              <div className="text-sm font-semibold text-gray-800">
+                <span className="text-primary font-bold">5.0</span> on Google
+                <span className="text-gray-400 font-normal ml-1">(59 reviews)</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-full px-5 py-2.5 shadow-sm">
+              <span className="text-yellow-400 text-lg leading-none">★★★★★</span>
+              <div className="text-sm font-semibold text-gray-800">
+                <span className="text-primary font-bold">5.0</span> on Justdial
+                <span className="text-gray-400 font-normal ml-1">(84 reviews)</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 bg-secondary/5 border border-secondary/20 rounded-full px-5 py-2.5 shadow-sm">
+              <span className="text-secondary font-bold text-base">✓</span>
+              <span className="text-sm font-semibold text-gray-800">Justdial Claimed Business</span>
+            </div>
+            <div className="flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-full px-5 py-2.5 shadow-sm">
+              <span className="text-primary font-bold text-base">🏫</span>
+              <span className="text-sm font-semibold text-gray-800">School · Coaching · Hostel</span>
             </div>
           </div>
         </div>

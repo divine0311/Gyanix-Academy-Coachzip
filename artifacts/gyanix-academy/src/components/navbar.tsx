@@ -120,13 +120,13 @@ export function Navbar() {
               href="https://wa.me/918950175314"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-full border border-green-500 text-green-600 text-sm font-semibold hover:bg-green-50 transition-colors duration-200"
+              className="flex items-center gap-2 px-4 py-2 rounded-full border border-green-500 text-green-600 text-sm font-semibold hover:bg-green-50 hover:scale-105 hover:shadow-md hover:shadow-green-100 transition-all duration-200"
             >
               <MessageCircle className="w-4 h-4" />
               WhatsApp
             </a>
             <Link href="/contact">
-              <button className="flex items-center gap-2 px-5 py-2 rounded-full bg-secondary text-white text-sm font-bold shadow-md shadow-secondary/30 hover:bg-secondary/90 hover:shadow-lg hover:shadow-secondary/40 transition-all duration-200 active:scale-95">
+              <button className="flex items-center gap-2 px-5 py-2 rounded-full bg-secondary text-white text-sm font-bold shadow-md shadow-secondary/30 hover:bg-secondary/90 hover:scale-105 hover:shadow-xl hover:shadow-secondary/50 transition-all duration-200 active:scale-95">
                 <Phone className="w-4 h-4" />
                 Enquire Now
               </button>

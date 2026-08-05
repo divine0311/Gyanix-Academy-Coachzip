@@ -1,8 +1,8 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { BookOpen, Star, Users, Trophy, ChevronRight } from "lucide-react";
+import { BookOpen, Star, Users, Trophy, ChevronRight, Award, CheckCircle } from "lucide-react";
 import homeHeroImg from "@assets/generated_images/home-hero.jpg";
 import homeHeroImg2 from "@assets/generated_images/home-hero-2.jpg";
 import homeHeroImg3 from "@assets/generated_images/home-hero-3.jpg";
@@ -12,6 +12,31 @@ const heroSlides = [
   { src: homeHeroImg2, alt: "Students learning in modern classroom at Gyanix Academy" },
   { src: homeHeroImg3, alt: "Students celebrating exam results at Gyanix Academy" },
 ];
+
+function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (!isInView) return;
+    const duration = 1800;
+    const startTime = performance.now();
+    const tick = (now: number) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * target));
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }, [isInView, target]);
+
+  return (
+    <div ref={ref} className="text-4xl md:text-5xl font-extrabold text-gray-900">
+      {count}{suffix}
+    </div>
+  );
+}
 
 export default function Home() {
   const [current, setCurrent] = useState(0);
@@ -26,13 +51,19 @@ export default function Home() {
   return (
     <div className="w-full">
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden bg-primary py-20 lg:py-32">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
-          {/* Particles placeholder */}
-          <div className="absolute top-20 left-20 w-4 h-4 bg-secondary rounded-full blur-[2px]"></div>
-          <div className="absolute bottom-40 right-20 w-6 h-6 bg-white rounded-full blur-[2px]"></div>
-          <div className="absolute top-40 right-1/3 w-3 h-3 bg-secondary rounded-full blur-[1px]"></div>
+      <section
+        className="relative overflow-hidden py-20 lg:py-32"
+        style={{ background: "linear-gradient(135deg, #0d1f4a 0%, #152460 40%, #1b2e7a 70%, #1e3580 100%)" }}
+      >
+        {/* Background glows & particles */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_left,_rgba(255,255,255,0.06)_0%,_transparent_60%)]" />
+          <div className="absolute -top-10 right-1/4 w-72 h-72 bg-secondary/25 rounded-full blur-3xl" />
+          <div className="absolute bottom-10 left-1/4 w-96 h-60 bg-blue-400/15 rounded-full blur-3xl" />
+          <div className="absolute top-20 left-20 w-3 h-3 bg-secondary rounded-full blur-[2px] opacity-70" />
+          <div className="absolute bottom-40 right-20 w-5 h-5 bg-white rounded-full blur-[2px] opacity-25" />
+          <div className="absolute top-40 right-1/3 w-2 h-2 bg-secondary rounded-full blur-[1px] opacity-60" />
+          <div className="absolute top-1/2 left-10 w-2 h-2 bg-white rounded-full opacity-20" />
         </div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -42,7 +73,8 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white text-sm font-medium mb-6">
+              {/* Glassmorphism badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 border border-white/30 backdrop-blur-md text-white text-sm font-medium mb-6 shadow-[0_4px_20px_rgba(0,0,0,0.15)]">
                 <Star className="w-4 h-4 text-secondary fill-secondary" />
                 <span>5.0 Rated Institute in Kaithal</span>
               </div>
@@ -54,14 +86,14 @@ export default function Home() {
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact">
-                  <Button variant="secondary" size="lg" className="rounded-full font-bold px-8">
+                  <button className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-bold text-white bg-gradient-to-r from-orange-500 via-secondary to-orange-400 shadow-lg shadow-secondary/40 hover:shadow-xl hover:shadow-secondary/60 hover:scale-105 transition-all duration-300 active:scale-95 text-base">
                     Book Free Demo Class
-                  </Button>
+                  </button>
                 </Link>
                 <Link href="/courses">
-                  <Button variant="outline" size="lg" className="rounded-full font-bold px-8 bg-transparent text-white border-white hover:bg-white hover:text-primary">
+                  <button className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-bold text-white border-2 border-white/80 hover:bg-white hover:text-primary hover:border-white hover:scale-105 transition-all duration-300 active:scale-95 text-base">
                     Explore Courses
-                  </Button>
+                  </button>
                 </Link>
               </div>
             </motion.div>
@@ -99,9 +131,9 @@ export default function Home() {
                   />
                 ))}
               </div>
-              
+
               {/* Floating Badge */}
-              <motion.div 
+              <motion.div
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.8 }}
@@ -117,6 +149,66 @@ export default function Home() {
               </motion.div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* WHY CHOOSE US — STATS */}
+      <section className="py-16 bg-white border-b border-gray-100">
+        <div className="container mx-auto px-4 md:px-6">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Why Choose Gyanix Academy?</h2>
+            <p className="text-gray-500 text-lg">Our track record speaks for itself.</p>
+          </motion.div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              { icon: Users, target: 500, suffix: "+", label: "Students Trained", gradient: "from-blue-500 to-blue-600", desc: "and growing every year" },
+              { icon: Trophy, target: 95, suffix: "%", label: "Success Rate", gradient: "from-secondary to-orange-400", desc: "students clear their exams" },
+              { icon: Star, target: 5, suffix: ".0★", label: "Google Rating", gradient: "from-yellow-400 to-amber-500", desc: "across 59+ reviews" },
+              { icon: BookOpen, target: 9, suffix: "+", label: "Exams Covered", gradient: "from-emerald-500 to-green-600", desc: "JEE, NEET, NDA & more" },
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                className="flex flex-col items-center text-center p-6 bg-gray-50 rounded-2xl border border-gray-100 hover:shadow-lg hover:border-secondary/20 hover:-translate-y-1 transition-all duration-300"
+              >
+                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${stat.gradient} flex items-center justify-center text-white mb-4 shadow-lg`}>
+                  <stat.icon className="w-7 h-7" />
+                </div>
+                <AnimatedCounter target={stat.target} suffix={stat.suffix} />
+                <div className="text-sm font-semibold text-gray-700 mt-1">{stat.label}</div>
+                <div className="text-xs text-gray-400 mt-0.5">{stat.desc}</div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Why bullets */}
+          <motion.div
+            className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+          >
+            {[
+              { icon: CheckCircle, text: "Small batches for personalised attention" },
+              { icon: Award, text: "IIT/NEET/NDA expert faculty, proven results" },
+              { icon: CheckCircle, text: "On-campus hostel — school + coaching + stay" },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-3 bg-primary/5 border border-primary/10 rounded-xl px-5 py-4">
+                <item.icon className="w-5 h-5 text-secondary shrink-0" />
+                <span className="text-sm font-medium text-gray-700">{item.text}</span>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
@@ -207,7 +299,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.08 }}
                 whileHover={{ y: -5 }}
                 className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all border border-gray-100 group cursor-pointer"
               >
@@ -232,7 +324,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
+
       {/* FACILITIES SECTION */}
       <section className="py-20 bg-white border-t border-gray-100">
         <div className="container mx-auto px-4 md:px-6">

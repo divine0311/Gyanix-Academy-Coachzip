@@ -1,8 +1,16 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Calculator, Stethoscope, Shield, GraduationCap, School, Microscope, BrainCircuit } from "lucide-react";
+import { Calculator, Stethoscope, Shield, GraduationCap, School, BookOpen, BrainCircuit, Microscope } from "lucide-react";
 import coursesImg from "@assets/generated_images/courses-hero.jpg";
+import imgIitJee from "@assets/generated_images/course-iit-jee.jpg";
+import imgNeet from "@assets/generated_images/course-neet.jpg";
+import imgNda from "@assets/generated_images/course-nda.jpg";
+import imgCuet from "@assets/generated_images/course-cuet.jpg";
+import imgRms from "@assets/generated_images/course-rms.jpg";
+import imgBoards from "@assets/generated_images/course-boards.jpg";
+import imgOlympiads from "@assets/generated_images/course-olympiads.jpg";
+import imgFoundation from "@assets/generated_images/course-foundation.jpg";
 
 export default function Courses() {
   const courses = [
@@ -11,7 +19,8 @@ export default function Courses() {
       title: "IIT-JEE (Mains & Advanced)",
       desc: "Comprehensive coaching for engineering aspirants with focus on advanced problem-solving.",
       icon: Calculator,
-      color: "bg-blue-100 text-blue-600",
+      color: "text-blue-600",
+      image: imgIitJee,
       features: ["Daily Practice Papers", "Weekly Mock Tests", "Advanced Study Material"]
     },
     {
@@ -19,7 +28,8 @@ export default function Courses() {
       title: "NEET Preparation",
       desc: "Expert guidance in PCB to secure top ranks in medical entrance examinations.",
       icon: Stethoscope,
-      color: "bg-emerald-100 text-emerald-600",
+      color: "text-emerald-600",
+      image: imgNeet,
       features: ["NCERT Focused", "Diagram-based Learning", "Previous Year Analysis"]
     },
     {
@@ -27,7 +37,8 @@ export default function Courses() {
       title: "NDA & Defence",
       desc: "Structured preparation for written exams and SSB interviews for defence services.",
       icon: Shield,
-      color: "bg-red-100 text-red-600",
+      color: "text-red-600",
+      image: imgNda,
       features: ["Maths & GAT Coverage", "Current Affairs", "Physical Fitness Tips"]
     },
     {
@@ -35,7 +46,8 @@ export default function Courses() {
       title: "CUET",
       desc: "Target top central universities with our specialized domain and general test prep.",
       icon: GraduationCap,
-      color: "bg-purple-100 text-purple-600",
+      color: "text-purple-600",
+      image: imgCuet,
       features: ["Domain Specific Classes", "Language Prep", "Computer Based Tests"]
     },
     {
@@ -43,7 +55,8 @@ export default function Courses() {
       title: "RMS & Sainik School",
       desc: "Early foundation and specific preparation for elite military school admissions.",
       icon: School,
-      color: "bg-orange-100 text-orange-600",
+      color: "text-orange-600",
+      image: imgRms,
       features: ["Basic Math & Intelligence", "GK Modules", "Interview Prep"]
     },
     {
@@ -51,7 +64,8 @@ export default function Courses() {
       title: "School Boards (5th–12th)",
       desc: "Strong academic foundation covering CBSE/State board curriculum perfectly.",
       icon: BookOpen,
-      color: "bg-teal-100 text-teal-600",
+      color: "text-teal-600",
+      image: imgBoards,
       features: ["Concept Clarity", "Board Pattern Tests", "Doubt Classes"]
     },
     {
@@ -59,7 +73,8 @@ export default function Courses() {
       title: "Olympiads",
       desc: "Train for national and international level science and math olympiads.",
       icon: BrainCircuit,
-      color: "bg-indigo-100 text-indigo-600",
+      color: "text-indigo-600",
+      image: imgOlympiads,
       features: ["Analytical Thinking", "High-order Problems", "National Level Benchmarking"]
     },
     {
@@ -67,7 +82,8 @@ export default function Courses() {
       title: "Pre-Foundation",
       desc: "Start early! Special programs for classes 6 to 8 to build a competitive edge.",
       icon: Microscope,
-      color: "bg-yellow-100 text-yellow-600",
+      color: "text-yellow-600",
+      image: imgFoundation,
       features: ["Mental Ability", "Science Fundamentals", "Fun Learning"]
     }
   ];
@@ -82,14 +98,14 @@ export default function Courses() {
         </div>
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="max-w-2xl">
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="text-4xl md:text-5xl font-extrabold text-white mb-6"
             >
               Academic Programs
             </motion.h1>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
@@ -111,27 +127,39 @@ export default function Courses() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.08 }}
                 className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 group flex flex-col"
               >
-                <div className="p-8 flex-1">
-                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 ${course.color}`}>
-                    <course.icon className="w-8 h-8" />
+                {/* Course Image */}
+                <div className="relative overflow-hidden h-48 shrink-0">
+                  <img
+                    src={course.image}
+                    alt={course.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+                  {/* Icon badge */}
+                  <div className="absolute top-3 right-3 p-2 rounded-xl bg-white/95 shadow-md backdrop-blur-sm">
+                    <course.icon className={`w-5 h-5 ${course.color}`} />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{course.title}</h3>
-                  <p className="text-gray-600 mb-6 line-clamp-3">{course.desc}</p>
-                  
-                  <ul className="space-y-2 mb-8">
+                </div>
+
+                {/* Content */}
+                <div className="p-7 flex-1 flex flex-col">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{course.title}</h3>
+                  <p className="text-gray-600 mb-5 line-clamp-2 flex-1">{course.desc}</p>
+
+                  <ul className="space-y-2 mb-6">
                     {course.features.map((feature, idx) => (
                       <li key={idx} className="flex items-center text-sm text-gray-500">
-                        <div className="w-1.5 h-1.5 rounded-full bg-secondary mr-2"></div>
+                        <div className="w-1.5 h-1.5 rounded-full bg-secondary mr-2 shrink-0"></div>
                         {feature}
                       </li>
                     ))}
                   </ul>
                 </div>
-                
-                <div className="p-6 pt-0 mt-auto border-t border-gray-50 bg-gray-50/50">
+
+                <div className="px-7 pb-7 mt-auto">
                   <Link href="/contact">
                     <Button className="w-full justify-between group-hover:bg-primary group-hover:text-white transition-colors" variant="outline">
                       Enquire Now

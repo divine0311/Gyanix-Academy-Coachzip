@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from '@/components/ui/toaster';
 import { Route, Switch, Router as WouterRouter } from 'wouter';
 import { Layout } from './components/layout';
+import { ChatBot } from './components/chatbot';
 
 import Home from './pages/home';
 import About from './pages/about';
@@ -52,6 +53,7 @@ function App() {
         <Router />
       </WouterRouter>
       <Toaster />
+      <ChatBot />
     </QueryClientProvider>
   );
 }

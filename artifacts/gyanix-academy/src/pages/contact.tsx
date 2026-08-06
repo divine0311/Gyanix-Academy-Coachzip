@@ -18,7 +18,6 @@ export default function Contact() {
     const form = e.currentTarget;
     const data = {
       name: (form.elements.namedItem("name") as HTMLInputElement).value.trim(),
-      phone: (form.elements.namedItem("phone") as HTMLInputElement).value.trim(),
       email: (form.elements.namedItem("email") as HTMLInputElement).value.trim(),
       course: (form.elements.namedItem("course") as HTMLSelectElement).value,
       message: (form.elements.namedItem("message") as HTMLTextAreaElement).value.trim(),
@@ -159,34 +158,18 @@ export default function Contact() {
                     onSubmit={handleSubmit}
                     className="space-y-5"
                   >
-                    {/* Row 1: Name + Phone */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                      <div className="space-y-1.5">
-                        <label className="text-sm font-medium text-gray-900">
-                          Full Name <span className="text-red-500">*</span>
-                        </label>
-                        <Input
-                          name="name"
-                          required
-                          placeholder="Enter your full name"
-                          className="bg-gray-50"
-                          disabled={status === "loading"}
-                        />
-                      </div>
-                      <div className="space-y-1.5">
-                        <label className="text-sm font-medium text-gray-900">
-                          Phone Number <span className="text-red-500">*</span>
-                        </label>
-                        <Input
-                          name="phone"
-                          required
-                          type="tel"
-                          pattern="[6-9][0-9]{9}"
-                          placeholder="10-digit mobile number"
-                          className="bg-gray-50"
-                          disabled={status === "loading"}
-                        />
-                      </div>
+                    {/* Row 1: Name */}
+                    <div className="space-y-1.5">
+                      <label className="text-sm font-medium text-gray-900">
+                        Full Name <span className="text-red-500">*</span>
+                      </label>
+                      <Input
+                        name="name"
+                        required
+                        placeholder="Enter your full name"
+                        className="bg-gray-50"
+                        disabled={status === "loading"}
+                      />
                     </div>
 
                     {/* Row 2: Email + Course */}

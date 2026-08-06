@@ -5,21 +5,20 @@ import { logger } from "../lib/logger";
 const router: IRouter = Router();
 
 router.post("/enquiry", async (req, res) => {
-  const { name, phone, email, course, message } = req.body as {
+  const { name, email, course, message } = req.body as {
     name?: string;
-    phone?: string;
     email?: string;
     course?: string;
     message?: string;
   };
 
-  if (!name || !phone || !email || !course || !message) {
+  if (!name || !email || !course || !message) {
     res.status(400).json({ error: "All fields are required." });
     return;
   }
 
   // Always log the enquiry so it's never silently lost
-  logger.info({ name, phone, email, course }, "New enquiry received");
+  logger.info({ name, email, course }, "New enquiry received");
 
   const smtpUser = process.env["SMTP_USER"];
   const smtpPass = process.env["SMTP_PASS"];
@@ -48,7 +47,6 @@ router.post("/enquiry", async (req, res) => {
       <div style="border:1px solid #e5e7eb;border-top:none;padding:24px;border-radius:0 0 8px 8px;">
         <table style="width:100%;border-collapse:collapse;">
           <tr><td style="padding:8px 0;color:#6b7280;width:130px;">Name</td><td style="padding:8px 0;font-weight:600;">${name}</td></tr>
-          <tr><td style="padding:8px 0;color:#6b7280;">Phone</td><td style="padding:8px 0;"><a href="tel:${phone}">${phone}</a></td></tr>
           <tr><td style="padding:8px 0;color:#6b7280;">Email</td><td style="padding:8px 0;"><a href="mailto:${email}">${email}</a></td></tr>
           <tr><td style="padding:8px 0;color:#6b7280;">Course</td><td style="padding:8px 0;">${course}</td></tr>
           <tr><td style="padding:8px 0;color:#6b7280;vertical-align:top;">Message</td><td style="padding:8px 0;">${message.replace(/\n/g, "<br>")}</td></tr>
@@ -63,11 +61,11 @@ router.post("/enquiry", async (req, res) => {
       from: `"Gyanix Academy Website" <${smtpUser}>`,
       to: enquiryEmail,
       replyTo: email,
-      subject: `New Enquiry: ${name} (${phone}) — ${course}`,
+      subject: `New Enquiry: ${name} — ${course}`,
       html,
     });
 
-    logger.info({ name, phone, email, course }, "Enquiry email sent");
+    logger.info({ name, email, course }, "Enquiry email sent");
     res.json({ success: true });
   } catch (err) {
     logger.error({ err }, "Failed to send enquiry email");

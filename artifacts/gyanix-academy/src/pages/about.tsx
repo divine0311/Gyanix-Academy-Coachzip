@@ -44,13 +44,13 @@ export default function About() {
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="bg-blue-50 p-6 rounded-xl border border-blue-100 shadow-sm">
-                  <Target className="w-8 h-8 text-blue-500 mb-4" />
+                <div className="bg-blue-100 p-6 rounded-xl border border-blue-200 shadow-sm">
+                  <Target className="w-8 h-8 text-blue-600 mb-4" />
                   <h3 className="font-bold text-gray-900 mb-2">Our Mission</h3>
                   <p className="text-sm text-gray-600">To empower students with the knowledge, skills, and confidence to crack top competitive exams.</p>
                 </div>
-                <div className="bg-orange-50 p-6 rounded-xl border border-orange-100 shadow-sm">
-                  <Award className="w-8 h-8 text-orange-500 mb-4" />
+                <div className="bg-orange-100 p-6 rounded-xl border border-orange-200 shadow-sm">
+                  <Award className="w-8 h-8 text-orange-600 mb-4" />
                   <h3 className="font-bold text-gray-900 mb-2">Our Vision</h3>
                   <p className="text-sm text-gray-600">To be the most trusted educational institution in Haryana, synonymous with academic excellence.</p>
                 </div>
@@ -82,12 +82,12 @@ export default function About() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { icon: Users, title: "Experienced Faculty", desc: "Learn from top educators who have produced national toppers.", bg: "bg-purple-50", border: "border-purple-100 hover:border-purple-300", iconBg: "bg-purple-100 text-purple-600" },
-              { icon: Target, title: "Small Batches", desc: "Personalized attention with limited students per batch.", bg: "bg-blue-50", border: "border-blue-100 hover:border-blue-300", iconBg: "bg-blue-100 text-blue-600" },
-              { icon: BookOpen, title: "Comprehensive Material", desc: "Updated study modules aligned with latest exam patterns.", bg: "bg-green-50", border: "border-green-100 hover:border-green-300", iconBg: "bg-green-100 text-green-600" },
-              { icon: CheckCircle2, title: "Doubt Sessions", desc: "Regular 1-on-1 doubt clearing to ensure conceptual clarity.", bg: "bg-yellow-50", border: "border-yellow-100 hover:border-yellow-300", iconBg: "bg-yellow-100 text-yellow-600" },
-              { icon: Award, title: "Test Series", desc: "Rigorous mock tests and detailed performance analytics.", bg: "bg-pink-50", border: "border-pink-100 hover:border-pink-300", iconBg: "bg-pink-100 text-pink-600" },
-              { icon: Trophy, title: "Result Oriented", desc: "A proven track record of selections in elite institutions.", bg: "bg-orange-50", border: "border-orange-100 hover:border-orange-300", iconBg: "bg-orange-100 text-orange-600" },
+              { icon: Users, title: "Experienced Faculty", desc: "Learn from top educators who have produced national toppers.", bg: "bg-purple-100", border: "border-purple-200 hover:border-purple-400", iconBg: "bg-purple-200 text-purple-700" },
+              { icon: Target, title: "Small Batches", desc: "Personalized attention with limited students per batch.", bg: "bg-blue-100", border: "border-blue-200 hover:border-blue-400", iconBg: "bg-blue-200 text-blue-700" },
+              { icon: BookOpen, title: "Comprehensive Material", desc: "Updated study modules aligned with latest exam patterns.", bg: "bg-green-100", border: "border-green-200 hover:border-green-400", iconBg: "bg-green-200 text-green-700" },
+              { icon: CheckCircle2, title: "Doubt Sessions", desc: "Regular 1-on-1 doubt clearing to ensure conceptual clarity.", bg: "bg-yellow-100", border: "border-yellow-200 hover:border-yellow-400", iconBg: "bg-yellow-200 text-yellow-700" },
+              { icon: Award, title: "Test Series", desc: "Rigorous mock tests and detailed performance analytics.", bg: "bg-pink-100", border: "border-pink-200 hover:border-pink-400", iconBg: "bg-pink-200 text-pink-700" },
+              { icon: Trophy, title: "Result Oriented", desc: "A proven track record of selections in elite institutions.", bg: "bg-orange-100", border: "border-orange-200 hover:border-orange-400", iconBg: "bg-orange-200 text-orange-700" },
             ].map((feature, i) => (
               <motion.div
                 key={i}

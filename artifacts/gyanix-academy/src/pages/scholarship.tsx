@@ -70,9 +70,9 @@ export default function Scholarship() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { icon: CheckCircle, title: "1. Register", desc: "Fill the form online or visit our center to register for the upcoming test date." },
-              { icon: Trophy, title: "2. Take the Test", desc: "Attempt an objective-type test assessing your aptitude and foundational knowledge." },
-              { icon: Percent, title: "3. Get Scholarship", desc: "Earn up to 100% tuition fee waiver based on your performance in the exam." }
+              { icon: CheckCircle, title: "1. Register", desc: "Fill the form online or visit our center to register for the upcoming test date.", bg: "bg-green-200", border: "border-green-300", iconBg: "bg-green-300 text-green-800" },
+              { icon: Trophy, title: "2. Take the Test", desc: "Attempt an objective-type test assessing your aptitude and foundational knowledge.", bg: "bg-blue-200", border: "border-blue-300", iconBg: "bg-blue-300 text-blue-800" },
+              { icon: Percent, title: "3. Get Scholarship", desc: "Earn up to 100% tuition fee waiver based on your performance in the exam.", bg: "bg-orange-200", border: "border-orange-300", iconBg: "bg-orange-300 text-orange-800" },
             ].map((step, i) => (
               <motion.div
                 key={i}
@@ -80,13 +80,13 @@ export default function Scholarship() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-white p-8 rounded-2xl text-center shadow-sm border border-gray-100"
+                className={`${step.bg} p-8 rounded-2xl text-center shadow-sm border ${step.border}`}
               >
-                <div className="w-16 h-16 bg-primary/5 text-primary rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <div className={`w-16 h-16 ${step.iconBg} rounded-2xl flex items-center justify-center mx-auto mb-6`}>
                   <step.icon className="w-8 h-8" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">{step.title}</h3>
-                <p className="text-gray-600">{step.desc}</p>
+                <p className="text-gray-700">{step.desc}</p>
               </motion.div>
             ))}
           </div>

@@ -266,21 +266,17 @@ export default function Contact() {
       </section>
 
       {/* Map */}
-      <section className="py-10 bg-gray-50">
-        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-          <div className="w-full h-[180px] rounded-2xl overflow-hidden shadow-lg border border-gray-200">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.9!2d76.4252486!3d29.797647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3911e12cd020ab75%3A0xfbcec7661ab03a1f!2sGyanix%20Academy!5e0!3m2!1sen!2sin!4v1722700000000!5m2!1sen!2sin"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Gyanix Academy Location"
-            ></iframe>
-          </div>
-        </div>
+      <section className="h-[400px] w-full mt-12 bg-gray-200">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.9!2d76.4252486!3d29.797647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3911e12cd020ab75%3A0xfbcec7661ab03a1f!2sGyanix%20Academy!5e0!3m2!1sen!2sin!4v1722700000000!5m2!1sen!2sin"
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Gyanix Academy Location"
+        ></iframe>
       </section>
     </div>
   );

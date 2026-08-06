@@ -1,10 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Send, Mic, MicOff, Volume2, VolumeX } from "lucide-react";
-
-const RobotIcon = ({ className }: { className?: string }) => (
-  <img src="/robot-icon.png" alt="Gyanix Assistant" className={className} />
-);
+import { MessageCircle, X, Send, Mic, MicOff, Volume2, VolumeX, Bot } from "lucide-react";
 
 interface Message {
   role: "user" | "assistant";
@@ -138,17 +134,17 @@ export function ChatBot() {
         onClick={() => setOpen((o) => !o)}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed bottom-24 right-6 z-50 w-16 h-16 rounded-full bg-white shadow-xl flex items-center justify-center overflow-hidden border-2 border-primary/20"
+        className="fixed bottom-24 right-6 z-50 w-14 h-14 rounded-full bg-primary shadow-lg flex items-center justify-center text-white"
         aria-label="Open chat"
       >
         <AnimatePresence mode="wait">
           {open ? (
             <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
-              <X className="w-6 h-6 text-primary" />
+              <X className="w-6 h-6" />
             </motion.div>
           ) : (
             <motion.div key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} className="relative">
-              <RobotIcon className="w-14 h-14 object-contain" />
+              <MessageCircle className="w-6 h-6" />
               {unread > 0 && (
                 <span className="absolute -top-2 -right-2 bg-secondary text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
                   {unread}
@@ -172,8 +168,8 @@ export function ChatBot() {
           >
             {/* Header */}
             <div className="bg-primary px-4 py-3 flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center shrink-0 overflow-hidden">
-                <RobotIcon className="w-8 h-8 object-contain" />
+              <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+                <Bot className="w-5 h-5 text-white" />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="text-white font-bold text-sm">Gyanix Assistant</div>
@@ -196,8 +192,8 @@ export function ChatBot() {
               {messages.map((msg, i) => (
                 <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                   {msg.role === "assistant" && (
-                    <div className="w-7 h-7 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 mr-2 mt-0.5 overflow-hidden">
-                      <RobotIcon className="w-6 h-6 object-contain" />
+                    <div className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mr-2 mt-0.5">
+                      <Bot className="w-4 h-4" />
                     </div>
                   )}
                   <div
@@ -214,8 +210,8 @@ export function ChatBot() {
 
               {loading && (
                 <div className="flex justify-start">
-                  <div className="w-7 h-7 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 mr-2 overflow-hidden">
-                    <RobotIcon className="w-6 h-6 object-contain" />
+                  <div className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mr-2">
+                    <Bot className="w-4 h-4" />
                   </div>
                   <div className="bg-white border border-gray-100 shadow-sm rounded-2xl rounded-bl-sm px-4 py-3 flex gap-1.5 items-center">
                     {[0, 1, 2].map((d) => (

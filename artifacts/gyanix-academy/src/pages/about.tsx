@@ -44,15 +44,15 @@ export default function About() {
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-                  <Target className="w-8 h-8 text-secondary mb-4" />
+                <div className="bg-blue-200 p-6 rounded-xl border border-blue-300 shadow-sm">
+                  <Target className="w-8 h-8 text-blue-700 mb-4" />
                   <h3 className="font-bold text-gray-900 mb-2">Our Mission</h3>
-                  <p className="text-sm text-gray-600">To empower students with the knowledge, skills, and confidence to crack top competitive exams.</p>
+                  <p className="text-sm text-gray-700">To empower students with the knowledge, skills, and confidence to crack top competitive exams.</p>
                 </div>
-                <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-                  <Award className="w-8 h-8 text-secondary mb-4" />
+                <div className="bg-orange-200 p-6 rounded-xl border border-orange-300 shadow-sm">
+                  <Award className="w-8 h-8 text-orange-700 mb-4" />
                   <h3 className="font-bold text-gray-900 mb-2">Our Vision</h3>
-                  <p className="text-sm text-gray-600">To be the most trusted educational institution in Haryana, synonymous with academic excellence.</p>
+                  <p className="text-sm text-gray-700">To be the most trusted educational institution in Haryana, synonymous with academic excellence.</p>
                 </div>
               </div>
             </motion.div>
@@ -82,12 +82,12 @@ export default function About() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { icon: Users, title: "Experienced Faculty", desc: "Learn from top educators who have produced national toppers." },
-              { icon: Target, title: "Small Batches", desc: "Personalized attention with limited students per batch." },
-              { icon: BookOpen, title: "Comprehensive Material", desc: "Updated study modules aligned with latest exam patterns." },
-              { icon: CheckCircle2, title: "Doubt Sessions", desc: "Regular 1-on-1 doubt clearing to ensure conceptual clarity." },
-              { icon: Award, title: "Test Series", desc: "Rigorous mock tests and detailed performance analytics." },
-              { icon: Trophy, title: "Result Oriented", desc: "A proven track record of selections in elite institutions." },
+              { icon: Users, title: "Experienced Faculty", desc: "Learn from top educators who have produced national toppers.", bg: "bg-purple-200", border: "border-purple-300 hover:border-purple-500", iconBg: "bg-purple-300 text-purple-800" },
+              { icon: Target, title: "Small Batches", desc: "Personalized attention with limited students per batch.", bg: "bg-blue-200", border: "border-blue-300 hover:border-blue-500", iconBg: "bg-blue-300 text-blue-800" },
+              { icon: BookOpen, title: "Comprehensive Material", desc: "Updated study modules aligned with latest exam patterns.", bg: "bg-green-200", border: "border-green-300 hover:border-green-500", iconBg: "bg-green-300 text-green-800" },
+              { icon: CheckCircle2, title: "Doubt Sessions", desc: "Regular 1-on-1 doubt clearing to ensure conceptual clarity.", bg: "bg-yellow-200", border: "border-yellow-300 hover:border-yellow-500", iconBg: "bg-yellow-300 text-yellow-800" },
+              { icon: Award, title: "Test Series", desc: "Rigorous mock tests and detailed performance analytics.", bg: "bg-pink-200", border: "border-pink-300 hover:border-pink-500", iconBg: "bg-pink-300 text-pink-800" },
+              { icon: Trophy, title: "Result Oriented", desc: "A proven track record of selections in elite institutions.", bg: "bg-orange-200", border: "border-orange-300 hover:border-orange-500", iconBg: "bg-orange-300 text-orange-800" },
             ].map((feature, i) => (
               <motion.div
                 key={i}
@@ -95,9 +95,9 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-secondary/30 hover:shadow-md transition-all"
+                className={`${feature.bg} p-8 rounded-2xl shadow-sm border ${feature.border} hover:shadow-md transition-all`}
               >
-                <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6">
+                <div className={`w-14 h-14 ${feature.iconBg} rounded-full flex items-center justify-center mb-6`}>
                   <feature.icon className="w-7 h-7" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
